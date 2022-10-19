@@ -1,0 +1,58 @@
+﻿@using NetCore.Models
+@model PostCategories
+
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <div class="d-flex align-items-center">
+                <h1 class="mt-3 mb-3">Modifica post</h1>
+            </div>
+            <form asp-controller="Post" asp-action="Update" asp-route-id="@Model.Post.Id" method="post">
+                @Html.AntiForgeryToken()
+                <div class="mb-3">
+                    <strong>Immagine:</strong>
+                    <input asp-for="Post.Image" class="d-block w-100" />
+                    <span asp-validation-for="Post.Image" class="text-danger"></span>
+                </div>
+                <div class="mb-3">
+                    <strong>Titolo:</strong>
+                    <input asp-for="Post.Title" class="d-block w-100" />
+                    <span asp-validation-for="Post.Title" class="text-danger"></span>
+                </div>
+                <div class="mb-3">
+                    <strong>Contenuto:</strong>
+                    <textarea asp-for="Post.Description" rows="10" class="d-block w-100"></textarea>
+                    <span asp-validation-for="Post.Description" class="text-danger"></span>
+                </div>
+                <div class="mb-3">
+                    <strong>Categoria:</strong>
+                    <select asp-for="Post.CategoryId" rows="10" class="d-block w-100">
+                        <option value=""></option>
+                        @foreach(Category category in Model.Categories)
+                        {
+                            @if (Model.Post.CategoryId == category.Id)
+                            {
+                                <option value="@category.Id" selected>@category.Title</option>
+                            } else
+                            {
+                                <option value="@category.Id">@category.Title</option>
+                            }
+                        }
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <strong>Tag:</strong>
+                    <select asp-for="SelectedTags"
+                            multiple="multiple"
+                            size="10"
+                            class="form-control mb-2 mr-sm-2 ml-sm-3 leftList"
+                            asp-items="@Model.Tags">
+                    </select>
+                </div>
+                <div class="text-end">
+                    <input type="submit" class="btn btn-small btn-success" value="Salva">
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

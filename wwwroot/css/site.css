@@ -1,0 +1,40 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px;
+}
+
+.post-list-table td.title {
+    min-width: 200px;
+}
+
+.post-list-table td.image img {
+    width:100px;
+    height:100px;
+    object-fit:cover;
+}
+
+.post-list-table td.items-buttons .buttons {
+    display: flex;
+}
+
+.items-buttons .buttons > * {
+    margin: 5px;
+}
+
+.post-single-image-container {
+    margin-bottom:10px;
+}
